@@ -1,0 +1,1411 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" /> -->
+		<meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    	<meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
+		
+
+
+
+
+
+
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!-- <meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0"> -->
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<link rel="shortcut icon" href="/interlib3/media/images/favicon.ico" type="image/x-icon" id="link" />
+
+<link rel="stylesheet" type="text/css"
+	href="/interlib3/media/js/jquery/jquery.easyui/themes/default/easyui.css" id="easyuiTheme"/>
+<link rel="stylesheet" type="text/css"
+	href="/interlib3/media/js/jquery/jquery.easyui/themes/icon.css" />
+<link rel="stylesheet" type="text/css"
+	href="/interlib3/media/themes/default/base.css?V3.5.1.20221111" />
+<link rel="stylesheet" type="text/css"
+	href="/interlib3/media/themes/default/default.css?V3.5.1.20221111" />
+<link rel="stylesheet" type="text/css"
+	href="/interlib3/media/themes/default/icon.css?V3.5.1.20221111" />
+<link rel="stylesheet" type="text/css"
+	href="/interlib3/media/themes/font12.css" id="fontTheme"/>
+<link rel="stylesheet" type="text/css"
+	href="/interlib3/media/themes/default/easyui.css?V3.5.1.20221111" id="myEasyuiTheme"/>
+
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.base/jquery-2.8.min.js"></script>
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.base/jquery-migrate-1.2.1.js"></script>
+
+	<script src="/interlib3/media/js/jquery/qrcode.min.js" type="text/javascript"></script>
+
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.base/jquery.cookie.js"></script>
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.easyui/locale/easyui-lang-zh_CN.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+	var i18n_jquery_loading = '数据加载中...';	
+	var i18n_jquery_error_prompt = '错误提示';
+	var i18n_jquery_neterror_recon = '网络异常，正在重试...';
+	var i18n_jquery_operator_exception = '网络异常!';
+	var i18n_jquery_processing_pleasewait = '正在处理，请稍候....';
+	var i18n_jquery_invalid_param = '无效传参！';
+	var i18n_jquery_date_format = '请输入日期!格式为(yyyy-mm-dd) \n例(2001-01-01)！';
+	var i18n_jquery_month_format = '月份必须在01和12之间!';
+	var i18n_jquery_day_format = '日期必须在01和31之间!';
+	var i18n_jquery_Feb_format_sign1 = '二月份日期必须在01到29之间!';
+	var i18n_jquery_Feb_format_sign2 = '二月份日期必须在01到28之间!';
+	var i18n_jquery_ltmonth_format = '在四，六，九，十一月份 \n日期必须在01到30之间!';
+	var i18n_jquery_flexigrid_beforePageText = '第';
+	var i18n_jquery_flexigrid_filter = '过滤';
+	var i18n_jquery_flexigrid_restore = '还原';
+	
+	var i18n_jquery_flexigrid_afterPageText = function(param1) {
+		return '共<span> '+param1+' </span>页';
+	};
+</script>
+
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.extend/jquery.easyui.extend.js?V3.5.1.20221111"></script>
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.extend/my_js_extend.js?V3.5.1.20221111"></script>
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.extend/my_easyui_extend.js?V3.5.1.20221111"></script>
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.extend/my_contact_extend.js?V3.5.1.20221111"></script>
+<script type="text/javascript" 
+	src="/interlib3/media/js/common/keycode.js?V3.5.1.20221111"></script>
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.extend/my_key_listener.js?V3.5.1.20221111"></script>
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.extend/locale/easyui-lang-zh_CN.js?V3.5.1.20221111"></script>
+<script>
+var op_minPageSize = "30";
+$.ajaxSetup({
+    contentType:"application/x-www-form-urlencoded;charset=utf-8",
+    complete:function(XMLHttpRequest,textStatus){
+  		//通过XMLHttpRequest取得响应头，sessionstatus           
+		var sessionstatus=XMLHttpRequest.getResponseHeader("sessionstatus"); 
+		if(sessionstatus=="timeout"){
+			//这里怎么处理在你，这里跳转的登录页面
+        	//alert("登陆超时，跳转到登陆界面！");
+        	top.location.href = '/interlib3/login';
+       	}
+    }
+});
+var checkLibPrivUrl = "/interlib3/system/libcode/checkLibPriv?csrftoken=1814c56e74b1477caa38035a5d2b4c39";
+var loginInfoEncUrl = "/interlib3/login/getLoginInfoEncrypt?csrftoken=1814c56e74b1477caa38035a5d2b4c39";
+</script>
+
+<script>
+	////////////////////防御CSRF攻击，策略2、在请求地址中添加 token 并验证////////////////////
+	function updateForms(token) {
+		// 得到页面中所有的 form 元素
+		var forms = document.getElementsByTagName('form'); 
+		for(i=0; i<forms.length; i++) {
+			var url = forms[i].action; 
+			// 如果这个 form 的 action 值为空，则不附加 csrftoken 
+			if(url == null || url == "" ) continue; 
+			// 动态生成 input 元素，加入到 form 之后
+			var e = document.createElement("input"); 
+			e.name = "csrftoken"; 
+			e.value = token; 
+			e.type="hidden"; 
+			forms[i].appendChild(e); 
+		} 
+	}
+
+	function updateTags(token) {
+		var all = document.getElementsByTagName('a'); 
+		var len = all.length; 
+		// 遍历所有 a 元素
+		for(var i=0; i<len; i++) {
+			var e = all[i]; 
+			updateTag(e, 'href', token); 
+		}
+	}
+
+	function updateTag(element, attr, token) { 
+		var location = element.getAttribute(attr); 
+		if(location != null && location != '' && location != "#" && location.indexOf("javascript:")!=0) {
+			var fragmentIndex = location.indexOf('#'); 
+			var fragment = null; 
+			if(fragmentIndex != -1){ 
+				//url 中含有只相当页的锚标记
+				fragment = location.substring(fragmentIndex); 
+				location = location.substring(0,fragmentIndex); 
+			}
+			var index = location.indexOf('?');
+			if(index != -1) { 
+				//url 中已含有其他参数
+				location = location + '&csrftoken=' + token; 
+			} else { 
+				//url 中没有其他参数
+				location = location + '?csrftoken=' + token; 
+			}
+			if(fragment != null){ 
+				location += fragment; 
+			}
+			element.setAttribute(attr, location); 
+		} 
+	}
+	
+	function appendToken(){
+		var csrftoken = '1814c56e74b1477caa38035a5d2b4c39'; 
+		updateForms(csrftoken); 
+		updateTags(csrftoken); 
+	}
+	
+	$(function() {
+		//appendToken();
+		$("#link").disabled = true;
+	});
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css"
+	href="/interlib3/media/i18n/zh_CN/themes.css"/>
+<link rel="stylesheet" type="text/css"
+	href="/interlib3/media/themes/default/base.css" />
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.interlib.js"></script>
+
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.easyui/jquery.easyui.tab.js"></script>
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.easyui/jquery.portal.js"></script>
+	
+<script type="text/javascript"
+	src="/interlib3/media/js/common/md5.js"></script>
+	
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.extend/tools/jquery.fullScreen.js"></script>
+
+<script type="text/javascript"
+	src="/interlib3/media/js/jquery/jquery.extend/tools/my_help.js?V3.5.1.20221111"></script>
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	var scriptsArray = new Array();
+	$.cachedScript = function (url, options) {
+	    //循环script标记数组
+	    for (var s in scriptsArray) {
+	        //console.log(scriptsArray[s]);
+	        //如果某个数组已经下载到了本地
+	        if (scriptsArray[s]==url) {
+	            return {  //则返回一个对象字面量，其中的done之所以叫做done是为了与下面$.ajax中的done相对应
+	                done: function (method) {
+	                    if (typeof method == 'function'){  //如果传入参数为一个方法
+	                        method();
+	                    }
+	                }
+	            };
+	        }
+	    }
+	    //这里是jquery官方提供类似getScript实现的方法，也就是说getScript其实也就是对ajax方法的一个拓展
+	    options = $.extend(options || {}, {
+	        dataType: "script",
+	        url: url,
+	        cache:true //其实现在这缓存加与不加没多大区别
+	    });
+	    scriptsArray.push(url); //将url地址放入script标记数组中
+	    return $.ajax(options);
+	};
+	//包含此页面的jsp已导入了jquery的引用。
+	//公共 start
+	//替换主页面的添加菜单的方法
+	function initOtherMenu() {
+		//addOneMenu('&nbsp;在 线 咨 询', 'icon-user-earth', 'menu_ckzx()');
+		addOneMenu('&nbsp;服 务 中 心', 'icon-service-center', 'menu_gyzj()');
+	}
+	//是否可提交
+	function isCanSubmit() {
+		if("P4FJ0595013"=="") {
+			alert("系统未设置图书馆唯一编号，请管理员到系统-系统参数设置-系统特殊参数设置。"
+				+"如不知道本馆软件的唯一编号请咨询图创客服获取！");
+			return false;
+		}
+		return true;
+	}
+	//提交
+	function formSubmit(name, action, attrs) {
+		try {
+			var form = (name?$("form[name="+name+"_form"+"]"):null);
+			//console.info(form);
+			if(form == null || (form.length==0)) {
+				form = $("<form></form>");
+				/*var idx = action.indexOf("?");
+				if(idx != -1) {
+					var tmpInputs = action.substr(idx+1);
+					action = action.substr(0, idx);
+					//console.info(tmpInputs);
+					var tmpArrInput = tmpInputs.split("&");
+					for(var i=0; i<tmpArrInput.length; i++) {
+						var tmpArrKeyValue = tmpArrInput[i].split("=");
+						if(tmpArrKeyValue.length==2) {
+							form.append($("<input type='hidden' name='"+tmpArrKeyValue[0]
+			        			+"' value='"+tmpArrKeyValue[1]+"' />"));
+						}
+					}
+				}*/
+				form.attr('action', action);
+				if(name) {
+					form.attr('name', name+"_form");
+				}
+				form.attr('target', (name?name+"_window":'_blank'));
+				form.attr('method', 'post');
+				if (attrs && attrs.length > 0) {
+					for ( var i = 0; i < attrs.length; i++) {
+						var tmpAttr = attrs[i];
+						form.append($("<input type='hidden' name='"+tmpAttr.name
+		        			+"' value='"+tmpAttr.value+"' />"));
+					}
+				}
+				form.appendTo("body");
+				form.css('display', 'none');
+			}
+			form.submit();
+		} catch(e){}
+	}
+	//公共 end
+
+	//馆员之家 start
+	function menu_gyzj() {
+		if(!isCanSubmit()) {
+			return;
+		}
+		var url = "/interlib3/menu/gyzj";
+		var index_help_url = '';
+		var isindex_help_pic = '0';
+		if(isindex_help_pic ==1 && index_help_url !='' && index_help_url != undefined){
+			url = index_help_url;
+		} 
+		formSubmit("menu_gyzj", url);
+		
+	}
+	//馆员之家 end
+	
+	//参考咨询 start
+	function menu_ckzx() {
+		if(!isCanSubmit()) {
+			return;
+		}
+		var action = "http://rc.interlib.com.cn:82/rc/web/chat/consult/chatframe.html";
+		var attrs = [ {
+			name : "rdName",
+			value : "肖达根"
+		}, {
+			name : "company",
+			value : "晋江图书馆"
+		}, {
+			name : "title",
+			value : "interlib"
+		}, {
+			name : "groupNoName",
+			value : "interlib"
+		}, {
+			name : "phone",
+			value : ""
+		}, {
+			name : "libraryID",
+			value : "P4FJ0595013"
+		}, {
+			name : "loginid",
+			value : "dzyl03"
+		} ];
+		formSubmit("menu_ckzx", action, attrs);
+	}
+	//知识库
+	function menu_zsk() {
+		if(!isCanSubmit()) {
+			return;
+		}
+		var action = "http://rc.interlib.com.cn:82/rc/web/kb/center/index_U003.html";
+		formSubmit("menu_zsk",action);
+	}
+	$(function(){
+		//$.cachedScript("http://rc.interlib.com.cn:82/rc/web/pendant/apiChatPendant.html");
+    	//$.cachedScript("http://rc.interlib.com.cn:82/rc/web/login/companylogin.html?libraryID=P4FJ0595013&loginid=dzyl03");
+	});
+	//参考咨询 end
+</script>
+
+		<link rel="stylesheet" type="text/css" href="/interlib3/media/themes/default/login.css" />
+		<style type="text/css">
+			#interlib_login .form{
+				width:363px;
+				position:absolute;
+				height:486px;
+				left:580px;
+				background:url(/interlib3/media/themes/default/images/logincenterbg_inputs.jpg) no-repeat;
+			}
+		</style>
+		<script>
+		$(window).resize(function(){
+			resizeWindow();
+		});
+		function resizeWindow(){
+			var _WindowsWidth = $(window).width();
+			if(_WindowsWidth>=1600){
+				$("#serviceDIV").css("margin-left","1300px");
+			}else if(_WindowsWidth>=1270){
+				$("#serviceDIV").css("margin-left","950px");
+				$("#yindaoye").css("margin-left","635px");
+			}else if(_WindowsWidth>1130){
+				$("#serviceDIV").css("margin-left","810px");
+				$("#yindaoye").css("margin-left","495px");
+			}else if(_WindowsWidth>=1024){
+				$("#serviceDIV").css("margin-left","760px");
+				$("#yindaoye").css("margin-left","445px");
+			}else{
+				$("#serviceDIV").css("display","none");
+			}
+		}
+		$(function(){
+			window.opener = null; 
+			window.open("","_self"); 
+			my_easyui_extend.initSplitbutton();
+			//回车触发登录事件
+			/* 文本框里面有监听了,这里不用了
+			$('#security_in').on('keyup', function(event){
+				if (event.keyCode == '13') {
+					doLogin();
+				}
+			});
+			*/
+			/*var messageJSON = $.parseJSON('');
+			if(messageJSON) {
+				var message = messageJSON.message;
+				if(message!="") {
+					alert(message);
+				}
+			}*/
+			//initMenu();
+			$("#searchInput").combobox({
+				mode:'remote',
+			    url:"/interlib3/system/sysmenu/searchMenuList",   
+			    valueField:'MENU_URL',   
+			    width:250,
+			    panelWidth:230,
+			    panelHeight:220,
+			    textField:'MENU_NAME',
+			    delay:400,
+			    onLoadSuccess:function(){
+			    	$.each($("#searchInput").combobox("panel").eq(0).find("div"),function(index,item){
+			    		$(item).bind('click', function() {
+			    			$("#showsearchMenuDialog").dialog('close');
+							my_easyui_extend.showTab($(this).text(),"/interlib3/"+$(this).attr("value")+"", true, true);
+		    			});
+					});
+			    }
+			});  
+			var option = $("#searchInput").combobox("textbox");
+			$(option).keydown(function(event){
+				if(event.keyCode==13){
+					var panel = $("#searchInput").combobox("panel").eq(0);
+					var list = $(panel).find("div");
+					$.each(list,function(){
+						if($(this).text()==$(option).val()){
+							$("#showsearchMenuDialog").dialog('close');
+							my_easyui_extend.showTab($(this).text(),"/interlib3/"+$(this).attr("value")+"", true, true);
+						}
+					});
+				}
+			});
+			var keycodes = [
+       			{"keycode":"G","func":"showsearchMenuDialog(0);","focus":""},
+        	];
+        	my_key_listener.initKeyDownListener(keycodes);
+        	resizeWindow();
+			initisOrigial();
+		});
+		function showsearchMenuDialog(){
+			$("#showsearchMenuDialog").show().dialog({
+				width : my_js_extend.getWidth(400),
+				height : my_js_extend.getHeight(260),
+				modal : true
+			});
+			var option = $("#searchInput").combobox("textbox");
+			$(option).val("").focus();
+		}
+		//登录提交
+		var number = "5";
+		var isMoreWindows = "0";
+		var interlibLogin = 1;
+              function doLogin() {
+                var loginid = $.trim($("input[name=loginid]").val());
+                var iu = my_contact_extend.getCookie("iu");
+          		
+               	if($("#logid").attr("checked")=="checked"){
+                	my_contact_extend.saveCookie("iu", loginid);
+              	}
+              	var security_in = $.trim($("#security_in").val());
+              	var error_icon = "<img src= '/interlib3/media/themes/default/images/error.png'/>";
+              	$("#resultMsg").html("");
+              	$("#resultMsg").html('<img src="/interlib3/media/themes/default/images/loading.gif"/>正在登录...');
+                if(loginid=="") {
+              		$("#resultMsg").html(error_icon+'请输入登录名！');
+              		$("input[name=loginid]").focus();
+              		return false;
+              	}
+              	if(security_in=="") {
+              		$("#resultMsg").html(error_icon+'请输入密码！');  
+              		$("#security_in").focus();
+              		return false;
+              	}
+              	$("#password").val(hex_md5($("#security_in").val()));
+				//if ( $.browser.msie && $.browser.version<8) {
+					$.ajax({
+	                  url: '/interlib3/login/opLOGIN',
+	                  type: "POST",
+	                  async: false,
+	                  data: "loginid="+$("input[name=loginid]").val()+"&password="+$("#password").val(),
+	                  beforeSend: function(data) {
+	                  	//$.messager.progress(); 
+	                  	$("#resultMsg").html("");
+	              		$("#resultMsg").html('<img src="/interlib3/media/themes/default/images/loading.gif"/>正在登录...');
+	                  },
+	                  success: function(data) {
+	                    if (data == 0) {
+	                      $("#resultMsg").html(error_icon+'用户名或密码不正确!');
+	                    } else if (data == 1) {
+	                      $("#resultMsg").html(error_icon+'该账户已被管理员注销!');
+	                    } else if (data == -1) {
+	                      $("#resultMsg").html(error_icon+'系统维护中，请稍后再试!');
+	                    } else if (data == 2) {
+	                      $("#resultMsg").html(error_icon+'您的IP地址不允许登录!');
+	                    } else if (data == 3) {
+	                      $("#resultMsg").html(error_icon+'IP与设定的工作IP不符合!');//，您不能使用该机器进行登录
+	                    } else {
+	                      $("#loginDialog").dialog('close');
+	                      location.reload();
+	                    }
+	                    //$.messager.progress('close');
+	                  },
+	                  error: function(data) {
+	                  	if(data&&data.status==0) {
+	                  		$("#resultMsg").html(error_icon+'网络故障，请联系系统管理员！');
+	                  	} else {
+	                  		$("#resultMsg").html("E"+data);
+	                  	}
+	                  	//$.messager.progress('close');
+	                  }
+	                });
+				/*} else {
+	                $('#loginInputForm').form({
+	                  url: '/interlib3/login/opLOGIN',
+	                  success: function(data) {
+	                    if (data == 0) {
+	                      $("#resultMsg").html("<img src= '/interlib3/media/themes/default/images/error.png'/>用户名或密码不正确!");
+	                    } else if (data == 1) {
+	                      $("#resultMsg").html("<img src= '/interlib3/media/themes/default/images/error.png'/>该账户已被管理员注销!");
+	                    } else {
+	                      $("#loginDialog").dialog('close');
+	                       location.reload();
+	                    }
+	                  },
+	                  error:function(data) {
+	                  	$("#resultMsg").html("e"+data);
+	                  }
+                	}); 
+               	}*/
+              	return false;
+              }
+		//退出登录
+              function opLOGOUT() {
+                var libcode = "jtlib";
+                $.ajax({
+                  url: "/interlib3/login/opLOGOUT",
+                  type: "POST",
+                  data: {},
+				  dataType : 'json',
+                  success: function(result) {
+                  	if(result&&result.furl) {
+                     window.location=result.furl;
+                  	} else {
+                   	 window.location="/interlib3/login?libcode="+libcode+"";
+                  	}
+                  }
+                });
+              }
+
+              function removeall() {
+                while ($('#menu').accordion('panels').length > 0) {
+                  $('#menu').accordion('remove', $('#menu').accordion('panels')[0].panel('options').title);
+                }
+              }
+              
+              /*点击主菜单模块*/
+              function showMenu(n) {
+           		 removeall();
+                    $.ajax({
+                      url: "/interlib3/system/menu/getMenu?n=" + n + "",
+                      type: "POST",
+                      data: {},
+                      async:false,
+                      success: function(result) {
+                      	if(result&&result.length<100) {
+                        $.each(result, function(i, str) {
+                        	var u = "system/menu/menutree?id="+str[1];
+                          $("#menu").accordion('add', {
+                        	   title: str[0],
+                               selected: false,
+                               href:u
+                          });
+                        });
+                        $('#menu').accordion('select',0);
+                      	}else{
+                      		document.write(result);
+                      	}
+                      } 
+                    });
+              }
+			  
+             var objCurrMenu;
+              /*function changeCurrMenu() {
+     
+              	$(".changeCurrMenu").click(function(){
+              		$(".changeCurrMenu").removeClass("selectedbutton");
+              		$(this).addClass("selectedbutton");
+              		showMenu($(this).attr("n"));
+              	})
+              }*/
+              function isLogin() { 
+                $.ajax({
+                  url: "/interlib3/login/isLogin",
+                  type: "POST",
+                  data: {},
+                  success: function(result) {
+                    //console.info("isLogin:"+result);
+                    if (result == 0) {
+                    	/*var bg = $("<div id='bg'></div>");
+                    	$(document.body).append(bg);
+                      	$("#loginWin").show();*/
+                      	window.location="/interlib3/login";
+                    } else {
+	                  	if(result&&result.furl) {
+	                     window.location=result.furl;
+	                    }
+                    	$("#myMenu").click();
+                    	//$("#catalog").click();
+                      	$("#operator").html(result.loginId);
+                      	var width = window.screen.width;
+                      	width = parseInt(width);
+                      	var libname ="<br>";
+                      	if(width == parseInt(1024)){
+                      		libname += interceptStr(result.libName,7);//设置显示的长度
+                      	}else if(parseInt(1024) < width && width <= parseInt(1280)){
+                      		libname += interceptStr(result.libName,9);//设置显示的长度
+                      	}else if(parseInt(1280) < width && width < parseInt(1360)){
+                      		libname += interceptStr(result.libName,12);
+                      	}else if(parseInt(1360) <= width && width <= parseInt(1366)){
+                      		libname += interceptStr(result.libName,20);
+                      	}else if(width > parseInt(1366)){
+                      		libname += result.libName;
+                      	}else{
+                      		libname = "";
+                      	}
+                      	$("#libcode").html(result.libcode+libname).attr("title",result.libName);
+                    }
+                  },
+                  error: function(e, data, a, b) {
+                  	$("#resultMsg").html('<img src="/interlib3/media/themes/default/images/error.png"/>请求连接失败!');
+                  }
+                });
+              }
+              
+              /*点击列表主菜单模块*/
+              function showListMenu(n) {
+              	var strListMenu = "";
+                $.ajax({
+                  url: "/interlib3/system/menu/getMenu?n=" + n + "",
+                  type: "POST",
+                  data: {},
+                  async: false,
+                  success: function(result) {
+                    $.each(result, function(i, str) {
+                    	var strOneMenu = "";
+                    	$.ajax({
+		                  url: "/interlib3/system/menu/tree?id=" + str[1] + "",
+		                  type: "POST",
+		                  data: {},
+                  		  async: false,
+		                  success: function(resultj) {
+		                    $.each(resultj, function(j, strj) {
+		                    	strOneMenu += '<div onclick=javascript:addTab("'+strj.text+'","'+strj.attributes.url+'",'+strj.attributes.isNew+'")>'+strj.text+'</div>';
+		                    });
+		                  }
+		                });
+		                if(strOneMenu=="") {
+		                	strListMenu+='<div>'+str[0]+'</div>';
+		                } else {
+		                	strListMenu+='<div><span>'+str[0]+' </span><div style="width:140px;">'+strOneMenu+'</div></div>';
+		                }
+                    });
+                  }
+                });
+                $('#ListMenu'+n).append(strListMenu);
+              }
+              //初始化下拉列表菜单
+              function initListMenu() {
+                showListMenu(2);
+                showListMenu(3);
+                showListMenu(4);
+                showListMenu(1);
+                showListMenu(5);
+                showListMenu(6);
+                showListMenu(7);
+                $('#catalog').splitbutton({
+                  menu: '#ListMenu2',
+                  plain:true,
+                  duration:1000
+                });
+                $('#cir').splitbutton({
+                  menu: '#ListMenu3'
+                });
+                $('#asset').splitbutton({
+                  menu: '#ListMenu4'
+                });
+                $('#system').splitbutton({
+                  menu: '#ListMenu1'
+                });
+                $('#series').splitbutton({
+                    menu: '#ListMenu5'
+                  });
+                $('#additional').splitbutton({
+                    menu: '#ListMenu6'
+                  });
+                $('#myMenu').splitbutton({
+                    menu: '#ListMenu7'
+                  });
+               }
+               
+              function initTopMenu() {
+                 $('#myMenu').linkbutton({
+                     menu: '#ListMenu7',
+                     plain:true,
+                     duration:1000
+                 });
+                 $('#order').linkbutton({
+                     menu: '#ListMenu2',
+                     plain:true,
+                     duration:1000
+                });
+                $('#catalog').linkbutton({
+                  menu: '#ListMenu8',
+                  plain:true,
+                  duration:1000
+                });
+                $('#cir').linkbutton({
+                  menu: '#ListMenu3',
+                  plain:true,
+                  duration:1000
+                });
+                $('#asset').linkbutton({
+                  menu: '#ListMenu4',
+                  plain:true,
+                  duration:1000
+                });
+                $('#system').linkbutton({
+                  menu: '#ListMenu1',
+                  plain:true,
+                  duration:1000
+                });
+                $('#series').linkbutton({
+                    menu: '#ListMenu5',
+                  	plain:true,
+                  	duration:1000
+                });
+                $('#additional').linkbutton({
+                    menu: '#ListMenu6',
+                  	plain:true,
+                  	duration:1000
+                });
+               }
+             
+              /*页面加载完成*/
+              $(document).ready(function() {
+				/*$(".myinfohide").hover(function(){
+					$(".myinfo").show();
+				});
+				$(".myinfo").mouseleave(function(){
+					$(this).hide();
+				});*/
+				$("#interlibnav ul li").click(function(){
+					$("#interlibnav ul li").removeClass("selected");
+					$(this).addClass("selected");
+					showMenu($(this).attr("n"));
+				});
+              	var iu = my_contact_extend.getCookie("iu");
+                      if(iu) {
+                      	$("#loginid").val(iu);
+                      	$("#security_in").focus();
+                      } else {
+                      	$("#loginid").focus();
+                      }
+              	
+				$(".checkbox").click(function(){
+					var c = $(this).find("em").attr("class");
+					if(c==undefined || c==""){
+						$("#logid").attr("checked",true);
+						$(this).find("em").addClass("selected");
+					}else{
+						$("#logid").attr("checked",false);
+						$(this).find("em").removeClass("selected");
+					}
+				});
+
+				$("#scroll .pager ul li").click(function(){
+					var index = $("#scroll .pager ul li").index(this);
+					$("#scroll .pager ul li").removeClass("selected");
+					$(this).addClass("selected");
+					var px = -index*231;
+					$("#scroll .list").animate({"left":px});
+				});
+
+             	isLogin();
+             	//changeCurrMenu();
+                //initListMenu();
+                rightMenu();
+               	initTopMenu();
+               	INTERLIB.init();
+               	$("#layout_center_tabs").tabs({
+					onBeforeClose: function(title,index){
+						try {
+							var objWin = my_easyui_extend.getTabWin(title);
+							//console.info(objWin);
+							if(objWin.handleOnBeforeClose) {
+								var target = this;
+								objWin.handleOnBeforeClose(
+									function() {
+										var opts = $(target).tabs('options');
+			           		     		var tmpFunc = opts.onBeforeClose;
+			           		     		opts.onBeforeClose = function(){};
+										$(target).tabs('close',index);
+										opts.onBeforeClose = tmpFunc; 
+									}
+								);
+								return false;
+							} else {
+								return true;
+							}
+						} catch(e) {
+							//console.info(e);
+							//return true;
+						}
+            		}
+          		});
+          		
+          		var temp =this.location.href.indexOf("?local="); 
+               	if(temp>-1) {
+               		var languageParam = this.location.href.substring(temp+7);
+               		var temp1 =languageParam.indexOf("&");
+               		if(temp1>-1){
+               			languageParam = languageParam.substring(0,temp1);
+               		}
+               		$("#language").val(languageParam);
+        		} else if("zh_CN"!="") {
+        			$("#language").val("zh_CN");
+        		}
+        		if("default"!="") {
+        			$("#easyuiTheme1").val("default");
+        		}
+        		if("12"!="") {
+        			$("#fontTheme1").val("12");
+        		}
+        		if(""!="") {
+        			$("#colorTheme1").val("");
+        		}
+              });
+             
+              
+            function rightMenu(){
+				$('#layout_center_tabsMenu').menu({
+					onClick : function(item) {
+					var curTabTitle = $(this).data('tabTitle');
+					var type = $(item.target).attr('type');
+					var currentTab =$('#layout_center_tabs').tabs('getSelected'); 
+					if (type === 'refresh') {
+						$(currentTab).find("iframe").attr("src",$(currentTab).find("iframe").attr("src"));
+						return;
+					}
+
+					if (type === 'close') {
+						var t = $('#layout_center_tabs').tabs('getTab', curTabTitle);
+						if (t.panel('options').closable) {
+							$('#layout_center_tabs').tabs('close', curTabTitle);
+						}
+						return;
+					}
+					if (type === 'addMenu') {
+						$.ajax({
+							type: 'POST',
+							url: '/interlib3/system/menu/addCommonMenu',
+							data : {
+								menuName : curTabTitle
+							},
+							cache : false,
+							async : false,
+							dataType : 'json',
+							success : function(d) {
+								alert(d.message);
+							}
+						});
+						return;
+					}
+					var allTabs = $('#layout_center_tabs').tabs('tabs');
+					var closeTabsTitle = [];
+	
+					$.each(allTabs, function() {
+						var opt = $(this).panel('options');
+						if (opt.closable && opt.title != curTabTitle && type === 'closeOther') {
+							closeTabsTitle.push(opt.title);
+						} else if (opt.closable && type === 'closeAll') {
+							closeTabsTitle.push(opt.title);
+						} else if (opt.closable && type === 'refresh') {
+							closeTabsTitle.refresh(opt.title);
+						}
+					});
+
+					for ( var i = 0; i < closeTabsTitle.length; i++) {
+						$('#layout_center_tabs').tabs('close', closeTabsTitle[i]);
+					}
+				}
+			});
+			
+			function closeIframe(index) {
+				var tmpTab = $('#layout_center_tabs').tabs('getSelected');
+				if(index!=undefined) {
+					tmpTab = $('#layout_center_tabs').tabs('getTab', index);
+				}
+				var panel = tmpTab.panel('panel');
+				var frame = panel.find('iframe').remove();
+				if ($.browser.msie) {
+					CollectGarbage();
+				}
+			}
+			
+			$('#layout_center_tabs').tabs({
+				fit : true,
+				border : false,
+				onContextMenu : function(e, title) {
+					e.preventDefault();
+					$('#layout_center_tabsMenu').menu('show', {
+						left : e.pageX,
+						top : e.pageY
+					}).data('tabTitle', title);
+				},
+				onBeforeClose : function(title,index) {
+					closeIframe(index);
+				},
+				tools : [
+				{
+					id : "my_help_btn",
+					iconCls : 'icon-help',
+					handler : function(e) {
+						var tab = $('#layout_center_tabs').tabs('getSelected');
+						if(tab) {
+							//console.info(tab.panel('options').title);
+							var url = my_help.getHelpFile('zh_CN', tab.panel('options').title);
+							//console.info(url);
+							window.open(url);
+				        };
+					}
+				}, {
+					id : "my_reload_btn",
+					iconCls : 'icon-reload',
+					handler : function() {
+						var href = $('#layout_center_tabs').tabs('getSelected').panel('options').href;
+						if (href) {
+							closeIframe();
+							var index = $('#layout_center_tabs').tabs('getTabIndex', $('#layout_center_tabs').tabs('getSelected'));
+							$('#layout_center_tabs').tabs('getTab', index).panel('refresh');
+						} else {
+							var panel = $('#layout_center_tabs').tabs('getSelected').panel('panel');
+							var frame = panel.find('iframe');
+							if (frame.length > 0) {
+								frame.attr("src",frame[0].src);
+							}
+						}
+					}
+				},
+				{
+					id : "my_menu_btn",
+					iconCls : 'icon-search',
+					handler : function(e) {
+						showsearchMenuDialog(0);
+					}
+				},  {
+					id : "my_arrow_btn",
+					iconCls : 'icon-arrow_nw_ne_sw_se',
+					handler : function() {
+						toMaxPage();
+					}
+				}, {
+					id : "my_cancel_btn",
+					iconCls : 'icon-cancel',
+					handler : function() {
+						closeCurrTab();
+					}
+				}],
+				onSelect : function(title,index){
+					var objHelpBtn = $("#my_help_btn");
+					//console.info(objHelpBtn);
+					if(my_help.isExistHelpFile(title)) {
+						if(objHelpBtn) { objHelpBtn.show(); }
+					} else {
+						if(objHelpBtn) { objHelpBtn.hide(); }
+					}
+					if(title == '读者管理'){
+               			$('#my_reload_btn').hide();
+               		}else{
+               			$('#my_reload_btn').show();
+               		}
+					if(title == '图书直接预订'){
+               			var tabWinObj = my_easyui_extend.getTabWin(title);
+               			try{
+               	    		tabWinObj.$('#col1Text').focus();
+               				tabWinObj.$('#col1Text').select();
+               			} catch(e) {}
+               		}
+               	}
+			});
+			$("#my_search_btn").attr("title",'菜单速查');
+			$("#my_reload_btn").attr("title",'刷新');
+			$("#my_service_btn").attr("title",'服务中心');
+			$("#my_arrow_btn").attr("title",'最大化最小化');
+			$("#my_cancel_btn").attr("title",'关闭');
+		}
+
+		function changeLanguage(local) {
+			top.location="changeLanguage?local="+local+"&csrftoken=1814c56e74b1477caa38035a5d2b4c39";
+		}
+		
+		$(function() {
+			checkLoalTime();
+			my_js_extend.bind_keyEvent($('#loginInputForm'));
+		});
+		
+		function closeIndex() {
+			window.opener=null;
+			window.close();
+		}
+		
+		function checkLoalTime() {
+			$.ajax({
+				url : '/interlib3/api/checkLoalTime',
+				data : {
+					clientTime:new Date().getTime()
+				},
+				cache : false,
+				async : false,
+				success : function(data) {
+					if(data) {
+						var d = $.parseJSON(data);
+						if (d.success) {
+							if(d.message) {
+								alert(d.message);
+							}
+						}
+					}
+				},
+				error : function(data) {}
+			});
+		}
+		
+		var t_n_h = 1;
+		var t_w_w = 1;
+		var t_c_w = 1;
+		var t_c_h = 1;
+		var t_s_h = 1;
+		var isMaxed = false;
+		function toMaxPage1() {
+			if(!isMaxed) {
+				t_c_w = document.body.clientWidth;
+				t_c_h = document.body.clientHeight;
+				isMaxed = true;
+			}
+			try {
+				var tmpObj_n = $("div[class='panel layout-panel layout-panel-north']")[0];
+				var tmpObj_w = $("div[class='panel layout-panel layout-panel-west layout-split-west']")[0];
+				var tmpObj_c = $("div[class='panel layout-panel layout-panel-center']")[0];
+				var tmpObj_s = $("div[class='panel layout-panel layout-panel-south']")[0];
+				var tmp_n_h = tmpObj_n.style.height;
+				var tmp_w_w = tmpObj_w.style.width;
+				var tmp_c_h = tmpObj_c.style.height;
+				var tmp_c_w = tmpObj_c.style.width;
+				var tmp_s_h = tmpObj_c.style.top;
+				//tmpObj_n.style.height=t_n_h;
+				//tmpObj_w.style.top=t_n_h;
+				//tmpObj_w.style.width=t_w_w;
+				tmpObj_c.style.top=t_n_h;
+				tmpObj_c.style.left=t_w_w;
+				tmpObj_c.style.heigth=t_c_h;
+				tmpObj_c.style.width=t_c_w;
+				//tmpObj_s.style.top=t_c_h;
+				t_n_h = tmp_n_h;
+				t_w_w = tmp_w_w;
+				t_c_w = tmp_c_w;
+				t_c_h = tmp_c_h;
+				t_s_h = tmp_s_h;
+			} catch(e){}
+		}
+		function toMaxPage() {
+			var indexLayout = "topLayout";
+			var panel = top.$('#'+indexLayout).layout('panel','north');
+			var tmp_t_h = panel.panel('options').height;
+			panel.panel('resize',{height:t_n_h});
+			t_n_h = tmp_t_h;
+			panel = top.$('#'+indexLayout).layout('panel','west');
+			tmp_t_h = panel.panel('options').width;
+			panel.panel('resize',{width:t_w_w});
+			t_w_w = tmp_t_h;
+			/*if(isMaxed) {
+				top.$('#'+indexLayout).layout('expand','west');  
+				isMaxed = false;
+			} else {
+				top.$('#'+indexLayout).layout('collapse','west'); 
+				isMaxed = true;
+			}*/
+			panel = top.$('#'+indexLayout).layout('panel','south');
+			tmp_t_h = panel.panel('options').height;
+			panel.panel('resize',{height:t_s_h});
+			t_s_h = tmp_t_h;
+			top.$('#'+indexLayout).layout('resize');
+		}
+		
+		/////关闭当前tab
+		function closeCurrTab(isForce) {
+			var index = $('#layout_center_tabs').tabs('getTabIndex', $('#layout_center_tabs').tabs('getSelected'));
+			var tab = $('#layout_center_tabs').tabs('getTab', index);
+			if (tab.panel('options').closable) {
+				if(isForce) {
+					var opts = $('#layout_center_tabs').tabs('options');
+    		     	var tmpFunc = opts.onBeforeClose;
+    		     	opts.onBeforeClose = function(){};
+					$('#layout_center_tabs').tabs('close',index);
+					opts.onBeforeClose = tmpFunc; 
+				} else {
+					$('#layout_center_tabs').tabs('close', index);
+				}
+			} else {
+				$.messager.alert('操作提示', '[' + tab.panel('options').title + ']'+'不可以被关闭', 'error');
+			}
+		}
+		
+		function addOneMenu(text, iconCls, clickFun) {
+			if(text) {
+				$('#MN_M_DIV').menu('appendItem', {
+					text: text,
+					iconCls: iconCls?iconCls:'',
+					onclick: clickFun?clickFun:''
+				});
+			}
+		}
+		/*function initMenu() {
+			try {
+				initOtherMenu();
+			} catch(e) {
+				console.info(e);
+			}
+			<div class="menu-sep"></div>
+			addOneMenu('&nbsp;操作员：<span id="operator" class="important-data"></span>');
+			//<div class="menu-sep"></div>
+			addOneMenu('&nbsp;分馆代码：<span id="libcode" class="important-data"></span>');
+			//<div class="menu-sep"></div>
+			addOneMenu('&nbsp;退出系统', 'icon-exit', 'opLOGOUT()');
+			//<div class="menu-sep"></div>
+		}*/
+		function serviceYindao(obj){
+			menu_gyzj();
+			$(obj).parent().hide();
+			$("#zhezbg").hide();
+			$.ajax({
+                url: "/interlib3/system/personaltemp/addOpYinDao",
+                type: "POST",
+                data: {code:"serviceyd"},
+                success: function(result) {
+                	
+                }
+			});
+		}
+		
+		function interceptStr(str,length){
+			var strLength = str.length;
+			var newStr = "";
+			if(strLength <= length){
+				newStr = str;
+			}else{
+				var newStr = str.substring(0,length);
+				newStr += "...";
+			}
+			return newStr;
+		}
+		
+		function initisOrigial(){
+			$.ajax({
+                url: "/interlib3/login/initisOrigial",
+                type: "POST",
+                data: {},
+                success: function(result) {
+                	//后台已经录入，前台不做操作
+                }
+			});
+		}
+        </script>
+		<title>
+			
+			 
+			 	Interlib图书馆集群管理系统
+			 
+		</title>
+	
+	</head>
+	<body class="easyui-layout" id="topLayout" >
+		<div id="layout_center_tabsMenu" style="width: 120px;">
+			<!-- <div type="refresh" data-options="iconCls:'refresh-ico'">刷新</div>
+			<div class="menu-sep"></div> -->
+			<div type="refresh" data-options="iconCls:'refresh-ico'">刷新</div>
+			<div type="close" data-options="iconCls:'close-ico'">关闭</div>
+			<div type="closeOther" data-options="iconCls:'close-ico'">关闭其他</div>
+			<div type="closeAll" data-options="iconCls:'close-ico'">关闭所有</div>
+			<div type="addMenu" data-options="iconCls:'icon-setting'">设置常用菜单</div>
+		</div>
+		
+		<div class="login" id="loginWin" style="display:none">
+		<div class="left"></div>
+		<div class="body">
+			<div class="content">
+				<div class="interlib_logo"></div>
+				<div class="form">
+					<input type="hidden" name="furl" id="furl" value="furl.jsp" /> 
+					<input type="checkbox" name="" id="logid"  style="display:none;" checked/>
+					<input type="hidden" name="competno" id="competno" value="999libcodeadmin" />
+					<input type="hidden" name="password" id="password" />
+					<div class="idinput"><input type="text"  id="loginid" name="loginid" onkeydown="if(event.keyCode=='13')doLogin()"/></div>
+					<div class="passinput"><input type="password"  name="security_in" id="security_in"  onkeydown="if(event.keyCode=='13')doLogin()"/></div>
+					<!-- <div class="checkbox"><label id="re"><em class="selected"></em>记住用户名</label></div> -->
+					<div class="submit"><input type="button" onclick="doLogin()"  value=" " /></div>
+					<div id="resultMsg" class="msg"></div>
+				</div>
+			</div>
+			<div class="line"></div>
+			<div class="scroll" id="scroll">
+				<div class="images">
+					<div class="list">
+						<ul>
+							<li><img src="/interlib3/media/themes/default/images/test1.jpg" /></li>
+							<li><img src="/interlib3/media/themes/default/images/test2.jpg" /></li>
+							<li><img src="/interlib3/media/themes/default/images/test3.jpg" /></li>
+						</ul>
+					</div>
+				</div>
+				<div class="pager">
+					<ul>
+						<li class="selected"></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="right"></div>
+	</div>
+		<div class="myinfo" style="display:none;">
+			<!-- <span class="selected"></span>
+			<div class="show">
+				<div class="content">
+					<div class="line">操作员:<span id="operator" ></span></div>
+					<div class="line">分馆代码:<span id="libcode"></span></div>
+					<div class="line button"><img title="退出系统" onclick="javascript:opLOGOUT();" style="border:0px;" src="/interlib3/media/themes/default/images/outpic.jpg"/></div>
+				</div>
+			</div> -->
+		</div>
+		<div data-options="region:'north'"
+			style="z-index:1;height:61px;overflow:hidden;background:url(/interlib3/media/themes/default/images/interlibnavbg.jpg)  repeat-x;border-bottom:1px #F2F2F2 solid">
+			<div>
+				<div id="interlib_nav">
+					<div class="logo" style="position:absolute; left:0px; top:0px;width:182px;height:52px;">
+						
+						
+							<img src="/interlib3/media/images/logo.png" style="width:100%;height:auto;"/>
+						
+					</div>
+					<div class="list" id="interlibnav" style="padding-left: 200px;">
+					<ul>
+						<li id="myMenu" 
+					class="mymenu" n="8"></li>
+						<li id="order" 
+					class="order" n="1"></li>
+						<li id="catalog" 
+					class="catalog" n="2"></li>
+						<li id="cir" 
+					class="cir" n="3"></li>
+						<li id="asset" 
+					class="asset" n="4"></li>
+						<li id="series" 
+					class="series" n="5"></li>
+						<li id="system" 
+					class="system" n="6"></li>
+						<li id="additional" 
+					class="additional" n="7"></li>
+					</ul>
+				</div>
+				
+				
+					<div id="serviceDIV" style="position: absolute;width: 110px;height: 48px;float: left;cursor: pointer;left: 0;top: 5px" 
+						class="service" onclick="menu_gyzj()"></div>
+				
+				<div style="position:absolute; float: right;margin-right: 2px;right: 2px;top: 0">
+					<div class="logininfo">操作员:<span id="operator" ></span></div>
+					<div class="logininfo" >分馆代码:<span id="libcode"></span>
+					<span onclick="javascript:opLOGOUT();"><font style="cursor: pointer">[退出]</font></span></div>
+				</div>
+				<!-- <div class="myinfohide"></div> 
+				<div>
+					<style>
+						.s-btn-downarrow {width:0px;}
+					</style>
+					<a id="MN_M" class="easyui-splitbutton" 
+						style="width:58px;height:45px;position:absolute;z-index:1;right:38px;top:8px;cursor:pointer;background:url(media/themes/images/8-.png);"
+						data-options="menu:'#MN_M_DIV',iconCls:'',plain:'false'"
+						href="javascript:void(0);">&nbsp;&nbsp;&nbsp;&nbsp;</a>
+					<div id="MN_M_DIV" style="display:none;width:200px;">
+						
+					</div>
+				</div>-->
+				</div>
+			</div>
+			<div>
+				<div id="ListMenu7" style="width:140px;"></div>
+				<div id="ListMenu8" style="width:140px;"></div>
+				<div id="ListMenu2" style="width:140px;"></div>
+				<div id="ListMenu3" style="width:140px;"></div>
+				<div id="ListMenu4" style="width:140px;"></div>
+				<div id="ListMenu1" style="width:140px;"></div>
+				<div id="ListMenu5" style="width:140px;"></div>
+				<div id="ListMenu6" style="width:140px;"></div>
+			</div>
+		</div>
+		<div data-options="region:'west',split:true" title="&nbsp;&nbsp;&nbsp;" style="width:160px;">
+			<div id="menu" class="easyui-accordion" data-options="fit:true,border:false">
+			</div>
+		</div>
+
+		<div region="center" id="mainPanle">
+			<div id="layout_center_tabs" style="overflow: hidden;" fit="true">
+				<!-- <div title="个人桌面"  id="home" data-options="href:'/interlib3/jsp_tiles/system/portal.jsp'"></div> -->
+			</div>
+		</div>
+		<div data-options="region:'south'" class="index_footer_bg"
+			style="z-index:1;overflow:hidden;margin-top:-1px!important;height:26px;border-top:none">
+			<span style="text-indent:10px;padding:3px;display:block;position:relative" class="footer_a">
+				
+				
+					<a href="https://www.yuque.com/books/share/015a50ad-87ab-4fa3-9044-68652e670291" target="_blank">Copyright ©2022 (V3.5.1.20221111  DB:V3.5.1.20221123)</a>
+				
+				
+				
+					图创软件
+				
+				
+				<strong>
+				<span>
+					<select id="colorTheme1" name="color" onChange="javascript:my_easyui_extend.changeColor(this.value)">
+						<option value="">默认色</option>
+						<option value="green">浅绿色</option>
+					</select>
+				</span>
+				<span>
+					<select id="easyuiTheme1" name="style" onchange="javascript:my_easyui_extend.changeTheme(this.value)">
+						<option value="default">蓝色主题</option>
+						<option value="pepper-grinder">橙色主题</option>
+						<option value="gray">灰色主题</option>
+						<!-- <option value="sunny">花纹主题</option>
+						<option value="cupertino">浅蓝主题</option> -->
+					</select>
+				</span> |
+				<span>
+					<select id="fontTheme1" name="font_size" onchange="javascript:my_easyui_extend.changeFont(this.value)">
+						<option value="12">小号字体</option>
+						<option value="14">中号字体</option>
+						<option value="16">大号字体</option>
+					</select>
+				</span> |
+				<span>
+					<select id="language" name="language" onchange="changeLanguage(this.value)">
+						<option value="zh_CN">简体中文</option>
+						<option value="zh_TW">繁体中文</option>
+						<!-- <option value="pt">葡萄牙文</option> -->
+						<option value="en">English</option>
+					</select>
+				</span></strong> 
+			</span>
+		</div>
+		<div id="showsearchMenuDialog" title="菜单速查" style="display: none;">
+			<table class="tableForm">
+				<tr>
+					<th>菜单检索词：</th>
+					<td><input id="searchInput"/></td>
+				</tr>
+			</table>	
+		</div>
+		
+		
+	</body>
+</html>
